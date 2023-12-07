@@ -18,6 +18,8 @@ class MenuRecommendation {
 
     await handleException(async () => await this.#getCoaches());
     await handleException(async () => await this.#getExcludedMenus());
+
+    this.#recomendMenus();
   }
 
   async #getCoaches() {
@@ -25,6 +27,7 @@ class MenuRecommendation {
     this.#scehduler.coaches = coachesName;
   }
 
+  // TODO: 반복문 돌리는 로직 run 함수로 옮기기
   async #getExcludedMenus() {
     const excludedMenus = [];
 
@@ -32,6 +35,10 @@ class MenuRecommendation {
       excludedMenus.push(await this.#inputView.getExcludedMenus(name));
     }
     this.#scehduler.setCoachesExcludedMenus(excludedMenus);
+  }
+
+  #recomendMenus() {
+    this.#scehduler.recommendMenus();
   }
 }
 
