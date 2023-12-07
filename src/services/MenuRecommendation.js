@@ -20,6 +20,11 @@ class MenuRecommendation {
     await handleException(async () => await this.#getExcludedMenus());
 
     this.#recomendMenus();
+
+    this.#outputView.printResult(
+      this.#scehduler.categories,
+      this.#scehduler.result,
+    );
   }
 
   async #getCoaches() {

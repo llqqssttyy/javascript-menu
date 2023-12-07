@@ -30,6 +30,10 @@ class Scheduler {
     return this.#coaches.map((coaches) => coaches.name);
   }
 
+  get categories() {
+    return this.#categories;
+  }
+
   get result() {
     return this.#coaches.map((coach) => {
       return coach.result;

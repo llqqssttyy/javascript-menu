@@ -17,6 +17,8 @@ class OutputView {
     results.forEach(({ name, menus }) => {
       Console.print(printRecommendedMenus({ name, menus }));
     });
+
+    Console.print('\n추천 완료했습니다.');
   }
 }
 

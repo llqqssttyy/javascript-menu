@@ -1,5 +1,5 @@
-const MissionUtils = require('@woowacourse/mission-utils');
-const App = require('../src/App');
+import { MissionUtils } from '@woowacourse/mission-utils';
+import App from '../src/App.js';
 
 const mockQuestions = (answers) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -72,36 +72,36 @@ describe('점심 메뉴 테스트', () => {
         [4, Array.from({ length: 9 }, sequenced)],
       ]);
 
-      const app = new App();
-      await app.play();
-      // const log = getOutput(logSpy);
+      // const app = new App();
+      // await app.play();
+      const log = getOutput(logSpy);
 
-      const logs = [
-        '점심 메뉴 추천을 시작합니다.',
-        '메뉴 추천 결과입니다.',
-        '[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]',
-        '[ 카테고리 | 한식 | 양식 | 일식 | 중식 | 아시안 ]',
-        '[ 구구 | 김치찌개 | 스파게티 | 규동 | 짜장면 | 카오 팟 ]',
-        '[ 제임스 | 제육볶음 | 라자냐 | 가츠동 | 짬뽕 | 파인애플 볶음밥 ]',
-        '추천을 완료했습니다.',
-      ];
+      // const logs = [
+      //   '점심 메뉴 추천을 시작합니다.',
+      //   '메뉴 추천 결과입니다.',
+      //   '[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]',
+      //   '[ 카테고리 | 한식 | 양식 | 일식 | 중식 | 아시안 ]',
+      //   '[ 구구 | 김치찌개 | 스파게티 | 규동 | 짜장면 | 카오 팟 ]',
+      //   '[ 제임스 | 제육볶음 | 라자냐 | 가츠동 | 짬뽕 | 파인애플 볶음밥 ]',
+      //   '추천을 완료했습니다.',
+      // ];
 
-      // expect(log.replace(/\n/g, '')).toEqual(
-      //   expect.stringContaining(
-      //     [
-      //       '점심 메뉴 추천을 시작합니다.',
-      //       '메뉴 추천 결과입니다.',
-      //       '[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]',
-      //       '[ 카테고리 | 한식 | 양식 | 일식 | 중식 | 아시안 ]',
-      //       '[ 구구 | 김치찌개 | 스파게티 | 규동 | 짜장면 | 카오 팟 ]',
-      //       '[ 제임스 | 제육볶음 | 라자냐 | 가츠동 | 짬뽕 | 파인애플 볶음밥 ]',
-      //       '추천을 완료했습니다.',
-      //     ].join(''),
-      //   ),
-      // );
-      logs.forEach((log) => {
-        expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-      });
+      expect(log.replace(/\n/g, '')).toEqual(
+        expect.stringContaining(
+          [
+            '점심 메뉴 추천을 시작합니다.',
+            '메뉴 추천 결과입니다.',
+            '[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]',
+            '[ 카테고리 | 한식 | 양식 | 일식 | 중식 | 아시안 ]',
+            '[ 구구 | 김치찌개 | 스파게티 | 규동 | 짜장면 | 카오 팟 ]',
+            '[ 제임스 | 제육볶음 | 라자냐 | 가츠동 | 짬뽕 | 파인애플 볶음밥 ]',
+            '추천을 완료했습니다.',
+          ].join(''),
+        ),
+      );
+      // logs.forEach((log) => {
+      //   expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+      // });
     });
   });
 });
