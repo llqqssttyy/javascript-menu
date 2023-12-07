@@ -1,5 +1,7 @@
 import { SEPERATOR } from '../../constants/constants.js';
+import MENUS from '../../constants/menus.js';
 import { ERRORS } from '../../constants/messages.js';
+import getShuffleNum from '../../utils/getShuffleNum.js';
 import throwError from '../../utils/throwError.js';
 import { isValidNumOfChars } from '../validators/CoachValidator.js';
 import { isExistMenu } from '../validators/MenusValidator.js';
@@ -11,13 +13,32 @@ import {
 class Coach {
   #name;
 
-  #excludedMenus;
+  #excludedMenus = [];
+
+  #recommendedMenus = [];
 
   constructor(name) {
     this.#validate(name);
-
     this.#name = name;
-    this.#excludedMenus = [];
+  }
+
+  #validate(name) {
+    if (isEmptyString(name)) throwError(ERRORS.emptyString);
+
+    if (!isValidNumOfChars(name)) throwError(ERRORS.invalidNumOfChars);
+  }
+
+  setRecommendedMenus(categories) {
+    categories.forEach((category, dayOfWeek) => {
+      const menus = MENUS[category].split(', ');
+
+      while (!this.#recommendedMenus[dayOfWeek]) {
+        const recommendedMenu = menus[getShuffleNum(menus.length) - 1];
+
+        if (this.#isAvailableMenu(recommendedMenu))
+          this.#recommendedMenus.push(recommendedMenu);
+      }
+    });
   }
 
   set excludedMenus(menus) {
@@ -32,10 +53,28 @@ class Coach {
     return this.#name;
   }
 
-  #validate(name) {
-    if (isEmptyString(name)) throwError(ERRORS.emptyString);
+  get recommendedMenus() {
+    return this.#recommendedMenus;
+  }
 
-    if (!isValidNumOfChars(name)) throwError(ERRORS.invalidNumOfChars);
+  get result() {
+    return {
+      name: this.#name,
+      menus: this.#recommendedMenus,
+    };
+  }
+
+  #isAvailableMenu(menu) {
+    if (
+      this.#recommendedMenus.length !== 0 &&
+      this.#recommendedMenus.includes(menu)
+    )
+      return false;
+
+    if (this.#excludedMenus.length !== 0 && this.#excludedMenus.includes(menu))
+      return false;
+
+    return true;
   }
 }
 

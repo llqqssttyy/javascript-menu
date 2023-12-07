@@ -30,6 +30,12 @@ class Scheduler {
     return this.#coaches.map((coaches) => coaches.name);
   }
 
+  get result() {
+    return this.#coaches.map((coach) => {
+      return coach.result;
+    });
+  }
+
   set coaches(coachesName) {
     this.#validateCoachesName(coachesName);
 
@@ -44,22 +50,29 @@ class Scheduler {
 
   recommendMenus() {
     this.#setCategories();
+    this.#setCoachesMenus();
   }
 
   #setCategories() {
-    const categories = [];
-
-    while (categories.length < WEEKDAY.length) {
+    while (this.#categories.length < WEEKDAY.length) {
       const categoryNum = Random.pickNumberInRange(
         MIN_INDEX_OF_MENU,
         MAX_INDEX_OF_MENU,
       );
-
-      if (categories.includes(categoryNum).length >= 3) return;
-
-      categories.push(Object.keys(MENUS)[categoryNum - 1]);
+      if (
+        this.#categories.filter(
+          (category) => category === Object.keys(MENUS)[categoryNum - 1],
+        ).length >= 2
+      )
+        return;
+      this.#categories.push(Object.keys(MENUS)[categoryNum - 1]);
     }
-    this.#categories = categories;
+  }
+
+  #setCoachesMenus() {
+    this.#coaches.forEach((coach) => {
+      coach.setRecommendedMenus(this.#categories);
+    });
   }
 
   #validateCoachesName(coachesName) {

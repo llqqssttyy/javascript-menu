@@ -2,6 +2,16 @@ const OUTPUTS = Object.freeze({
   start() {
     return '점심 메뉴 추천을 시작합니다.\n';
   },
+
+  printCategories(categories) {
+    const [mon, tues, wednes, thurs, fri] = categories;
+    return `[ 카테고리 | ${mon} | ${tues} | ${wednes} | ${thurs} | ${fri} ]`;
+  },
+
+  printRecommendedMenus({ name, menus }) {
+    const [mon, tues, wednes, thurs, fri] = menus;
+    return `[ ${name} | ${mon} | ${tues} | ${wednes} | ${thurs} | ${fri} ]`;
+  },
 });
 
 const INPUTS = Object.freeze({
