@@ -16,12 +16,22 @@ class MenuRecommendation {
   async run() {
     this.#outputView.printStart();
 
-    await handleException(async () => await this.#generateCoaches());
+    await handleException(async () => await this.#getCoaches());
+    await handleException(async () => await this.#getExcludedMenus());
   }
 
-  async #generateCoaches() {
+  async #getCoaches() {
     const coachesName = await this.#inputView.getCoachesName();
     this.#scehduler.coaches = coachesName;
+  }
+
+  async #getExcludedMenus() {
+    const excludedMenus = [];
+
+    for (const name of this.#scehduler.coachesName) {
+      excludedMenus.push(await this.#inputView.getExcludedMenus(name));
+    }
+    this.#scehduler.setCoachesExcludedMenus(excludedMenus);
   }
 }
 

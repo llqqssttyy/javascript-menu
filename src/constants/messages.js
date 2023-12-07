@@ -16,11 +16,15 @@ const ERRORS = Object.freeze({
   prefix: '[ERROR]',
 
   emptyString: '공백은 입력할 수 없습니다.]\n',
-  duplicatedElement: '입력한 값은 중복 없이 고유해야 합니다.',
+  duplicatedElement: '입력한 값은 중복 없이 고유해야 합니다.\n',
 
   invalidCoachNameForm: '이름은 쉼표로 구분하여 입력해야 합니다.\n',
   invalidNumOfCoaches: '코치는 최소 2명, 최대 5명 입력 가능합니다.\n',
   invalidNumOfChars: '이름은 최소 2글자, 최대 4글자 입력 가능합니다.\n',
+
+  invalidNumOfExcludedMenus:
+    '못 먹는 음식은 최소 0개, 최대 2개까지만 입력 가능합니다.\n',
+  notExistMenu: '존재하지 않는 메뉴입니다.\n',
 });
 
 export { OUTPUTS, INPUTS, ERRORS };

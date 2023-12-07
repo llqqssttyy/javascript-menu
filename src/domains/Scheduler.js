@@ -17,10 +17,20 @@ import {
 class Scheduler {
   #coaches;
 
+  get coachesName() {
+    return this.#coaches.map((coaches) => coaches.name);
+  }
+
   set coaches(coachesName) {
     this.#validateCoachesName(coachesName);
 
     this.#coaches = coachesName.split(SEPERATOR).map((name) => new Coach(name));
+  }
+
+  setCoachesExcludedMenus(excludedMenus) {
+    this.#coaches.map((coach, idx) => {
+      coach.excludedMenus = excludedMenus[idx];
+    });
   }
 
   #validateCoachesName(coachesName) {

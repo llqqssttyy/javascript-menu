@@ -2,6 +2,7 @@ import { SEPERATOR } from '../../constants/constants.js';
 import { ERRORS } from '../../constants/messages.js';
 import throwError from '../../utils/throwError.js';
 import { isValidNumOfChars } from '../validators/CoachValidator.js';
+import { isExistMenu } from '../validators/MenusValidator.js';
 import {
   hasDuplicatedElement,
   isEmptyString,
@@ -12,18 +13,23 @@ class Coach {
 
   #excludedMenus;
 
-  #recomendedMenus;
-
   constructor(name) {
     this.#validate(name);
 
     this.#name = name;
+    this.#excludedMenus = [];
   }
 
   set excludedMenus(menus) {
     if (hasDuplicatedElement(menus)) throwError(ERRORS.duplicatedElement);
 
-    this.#excludedMenus = menus.split(SEPERATOR);
+    if (!isExistMenu(menus)) throwError(ERRORS.notExistMenu);
+
+    if (menus !== '') this.#excludedMenus = menus.split(SEPERATOR);
+  }
+
+  get name() {
+    return this.#name;
   }
 
   #validate(name) {
