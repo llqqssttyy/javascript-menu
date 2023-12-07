@@ -5,9 +5,12 @@ class MenuRecommendation {
 
   #outputView;
 
-  constructor(inputView, outputView) {
+  #scehduler;
+
+  constructor(inputView, outputView, scehduler) {
     this.#inputView = inputView;
     this.#outputView = outputView;
+    this.#scehduler = scehduler;
   }
 
   async run() {
@@ -18,6 +21,7 @@ class MenuRecommendation {
 
   async #generateCoaches() {
     const coachesName = await this.#inputView.getCoachesName();
+    this.#scehduler.coaches = coachesName;
   }
 }
 
