@@ -1,4 +1,4 @@
-import { SEPERATOR } from '../../constants/constants';
+import { SEPERATOR } from '../../constants/constants.js';
 
 export const isEmptyString = (str) => {
   return str.trim() === '';

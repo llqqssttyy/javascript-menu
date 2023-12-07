@@ -1,15 +1,18 @@
-import Coach from './models/Coach';
+import Coach from './models/Coach.js';
 
-import { ERRORS } from '../constants/messages';
-import { SEPERATOR } from '../constants/constants';
+import { ERRORS } from '../constants/messages.js';
+import { SEPERATOR } from '../constants/constants.js';
 
-import throwError from '../utils/throwError';
+import throwError from '../utils/throwError.js';
 
-import { isValidForm, isValidNumOfCoaches } from './validators/CoachValidator';
+import {
+  isValidForm,
+  isValidNumOfCoaches,
+} from './validators/CoachValidator.js';
 import {
   hasDuplicatedElement,
   isEmptyString,
-} from './validators/StringValidator';
+} from './validators/StringValidator.js';
 
 class Scheduler {
   #coaches;
