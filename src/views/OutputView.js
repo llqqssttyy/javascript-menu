@@ -18,7 +18,7 @@ class OutputView {
       Console.print(printRecommendedMenus({ name, menus }));
     });
 
-    Console.print('\n추천 완료했습니다.');
+    Console.print('\n추천을 완료했습니다.');
   }
 }
 
