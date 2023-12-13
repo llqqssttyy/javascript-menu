@@ -7,8 +7,8 @@ class InputView {
     return coachesName;
   }
 
-  async getHateMenus() {
-    const hateMenus = await Console.readLineAsync(INPUTS.hateMenus);
+  async getHateMenus(name) {
+    const hateMenus = await Console.readLineAsync(INPUTS.hateMenus(name));
     return hateMenus;
   }
 }
