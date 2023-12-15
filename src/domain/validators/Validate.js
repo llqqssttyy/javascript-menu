@@ -19,6 +19,10 @@ const Validate = {
   name(input) {
     if (!isValidNameLength(input)) throwError(ERRORS.invalidNameLength);
   },
+
+  hateMenusForm() {},
+
+  hateMenus() {},
 };
 
 export default Validate;

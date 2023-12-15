@@ -16,12 +16,25 @@ class RecommendController {
   }
 
   async run() {
-    await handleException(() => this.#generateCoaches());
+    await handleException(() => this.#initiateCoaches());
+    await handleException(() => this.#initiateHateMenus());
   }
 
-  async #generateCoaches() {
+  async #initiateCoaches() {
     const input = await this.#inputView.getNames();
     this.#recommendService.generateCoaches(input);
+  }
+
+  async #initiateHateMenus() {
+    const { coaches } = this.#recommendService;
+
+    const hateMenus = [];
+    for (const name of coaches) {
+      const input = await this.#inputView.getHateMenus(name);
+      hateMenus.push(input);
+    }
+
+    this.#recommendService.initiateHateMenus(hateMenus);
   }
 }
 

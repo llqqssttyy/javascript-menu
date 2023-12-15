@@ -5,13 +5,23 @@ import Coach from '../domain/models/Coach.js';
 class RecommendService {
   #coaches;
 
-  constructor(coaches) {
-    this.#coaches = coaches;
-  }
-
   generateCoaches(input) {
     Validate.namesForm(input);
     this.#coaches = input.split(SEPERATOR).map((name) => new Coach(name));
+  }
+
+  /**
+   * @param {string[]} hateMenus
+   */
+  initiateHateMenus(hateMenus) {
+    Validate.hateMenusForm(hateMenus);
+    this.#coaches.forEach((coach, idx) => {
+      coach.hateMenus = hateMenus[idx];
+    });
+  }
+
+  get coaches() {
+    return this.#coaches.map((coach) => coach.name);
   }
 }
 

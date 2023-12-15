@@ -6,6 +6,11 @@ class InputView {
     const names = await Console.readLineAsync(INPUTS.names);
     return names;
   }
+
+  async getHateMenus(name) {
+    const hateMenus = await Console.readLineAsync(INPUTS.hateMenus(name));
+    return hateMenus;
+  }
 }
 
 export default InputView;

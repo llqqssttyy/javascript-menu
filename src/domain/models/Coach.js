@@ -1,3 +1,4 @@
+import { SEPERATOR } from '../../statics/constants.js';
 import Validate from '../validators/Validate.js';
 
 class Coach {
@@ -5,16 +6,38 @@ class Coach {
 
   #hateMenus;
 
-  #recommendMenus;
+  #recommendMenus = [];
 
   constructor(name) {
     Validate.name(name);
     this.#name = name;
   }
 
-  isDuplicatedMenu(menu) {}
+  set hateMenus(input) {
+    Validate.hateMenus(input);
+    this.#hateMenus = input.split(SEPERATOR);
+  }
 
-  isHateMenu(menu) {}
+  set recommendMenus(menu) {
+    if (!this.#isDuplicatedMenu(menu) && !this.#isHateMenu(menu))
+      this.#recommendMenus.push(menu);
+  }
+
+  get recommendMenus() {
+    return this.#recommendMenus;
+  }
+
+  get name() {
+    return this.#name;
+  }
+
+  #isDuplicatedMenu(menu) {
+    return this.#recommendMenus.includes(menu);
+  }
+
+  #isHateMenu(menu) {
+    return this.#hateMenus.includes(menu);
+  }
 }
 
 export default Coach;
