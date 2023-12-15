@@ -1,3 +1,7 @@
+import Validate from '../domain/validators/Validate.js';
+import { SEPERATOR } from '../statics/constants.js';
+import Coach from '../domain/models/Coach.js';
+
 class RecommendService {
   #coaches;
 
@@ -6,7 +10,8 @@ class RecommendService {
   }
 
   generateCoaches(input) {
-    //Validate.coaches
+    Validate.namesForm(input);
+    this.#coaches = input.split(SEPERATOR).map((name) => new Coach(name));
   }
 }
 

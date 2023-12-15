@@ -1,5 +1,9 @@
 const ERRORS = Object.freeze({
   prefix: '[ERROR]',
+  whitespace: '공백은 입력할 수 없습니다.\n',
+  invalidNamesForm: '이름은 쉼표로 구분하여 작성해 주세요.\n',
+  invalidNameCount: '이름은 최소 2개 최대 5개 까지만 입력 가능합니다.\n',
+  invalidNameLength: '이름은 최소 2자 최대 4자 까지만 입력 가능합니다.\n',
 });
 
 const INPUTS = Object.freeze({

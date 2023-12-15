@@ -1,3 +1,5 @@
+import Validate from '../validators/Validate.js';
+
 class Coach {
   #name;
 
@@ -6,15 +8,13 @@ class Coach {
   #recommendMenus;
 
   constructor(name) {
-    this.#validateName(name);
+    Validate.name(name);
     this.#name = name;
   }
 
   isDuplicatedMenu(menu) {}
 
   isHateMenu(menu) {}
-
-  #validateName(input) {}
 }
 
 export default Coach;
