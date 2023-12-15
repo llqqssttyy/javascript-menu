@@ -18,7 +18,7 @@ class Coach {
     this.#hateMenus = input.split(SEPERATOR);
   }
 
-  set recommendMenus(menu) {
+  setRecommendMenus(menu) {
     if (!this.#isDuplicatedMenu(menu) && !this.#isHateMenu(menu))
       this.#recommendMenus.push(menu);
   }

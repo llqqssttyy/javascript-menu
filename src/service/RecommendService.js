@@ -19,15 +19,11 @@ class RecommendService {
 
   #categories = [];
 
-  generateCoaches(input) {
+  setCoaches(input) {
     Validate.namesForm(input);
-
     this.#coaches = input.split(SEPERATOR).map((name) => new Coach(name));
   }
 
-  /**
-   * @param {string[]} hateMenus
-   */
   setHateMenus(hateMenus) {
     this.#coaches.forEach((coach, idx) => {
       coach.hateMenus = hateMenus[idx];
@@ -52,7 +48,9 @@ class RecommendService {
       while (coach.recommendMenus.length < WEEK.length) {
         const weekOfDay = coach.recommendMenus.length;
         const category = this.#categories[weekOfDay];
-        coach.recommendMenus = category.getRecommend();
+        const recommend = category.getRecommend();
+
+        coach.setRecommendMenus(recommend);
       }
     });
   }

@@ -26,7 +26,7 @@ class RecommendController {
 
   async #setCoaches() {
     const input = await this.#inputView.getNames();
-    this.#recommendService.generateCoaches(input);
+    this.#recommendService.setCoaches(input);
   }
 
   async #setHateMenus() {

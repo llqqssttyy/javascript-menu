@@ -29,7 +29,7 @@ describe('Coach 클래스 추천 메뉴 초기화 테스트', () => {
     coach.hateMenus = '우동,미소시루';
 
     RECOMMENDED_MENUS.forEach((menu) => {
-      coach.recommendMenus = menu;
+      coach.setRecommendMenus(menu);
     });
     expect(coach.recommendMenus).toEqual(RESULT);
   });
