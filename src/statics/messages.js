@@ -10,6 +10,8 @@ const ERRORS = Object.freeze({
 
   invalidMenusForm: '메뉴는 쉼표로 구분하여 작성해 주세요.\n',
   invalidMenus: '존재하지 않는 메뉴는 입력할 수 없습니다.\n',
+  invalidMenusCount:
+    '못 먹는 메뉴는 최소 0개 최대 2개 까지만 입력 가능합니다.\n',
 });
 
 const INPUTS = Object.freeze({

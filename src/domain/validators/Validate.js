@@ -7,6 +7,7 @@ import {
   isValidNameCount,
   isValidNameLength,
   isExistMenus,
+  isValidMenusCount,
 } from './validators.js';
 
 const Validate = {
@@ -30,6 +31,8 @@ const Validate = {
     if (!isValidForm(input)) throwError(ERRORS.invalidMenusForm);
 
     if (!isExistMenus(input)) throwError(ERRORS.invalidMenus);
+
+    if (!isValidMenusCount(input)) throwError(ERRORS.invalidMenusCount);
   },
 };
 
