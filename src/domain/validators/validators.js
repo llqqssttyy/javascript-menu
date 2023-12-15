@@ -6,10 +6,18 @@ import {
   SEPERATOR,
 } from '../../statics/constants.js';
 
+// Common
 export const isEmptyString = (input) => {
   return input.trim() === '';
 };
 
+export const hasDuplicatedElement = (input) => {
+  const arr = input.split(SEPERATOR);
+  const set = new Set(arr);
+  return set.size !== arr.length;
+};
+
+// 코치 이름 유효성 검사
 export const isValidNameForm = (input) => {
   const nameRegex = new RegExp(
     /^([ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z]+,)*([ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z]+,?)$/
@@ -26,3 +34,5 @@ export const isValidNameLength = (input) => {
   const nameLength = input.length;
   return nameLength >= MIN_NAME_LENGTH, nameLength <= MAX_NAME_LENGTH;
 };
+
+export const isValidMenusForm = (input) => {};
