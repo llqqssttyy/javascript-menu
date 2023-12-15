@@ -1,3 +1,5 @@
+import { MENUS } from '../../statics/menus.js';
+
 class Category {
   #category;
 
@@ -9,6 +11,10 @@ class Category {
   }
 
   pickMenu() {}
+
+  get category() {
+    return this.#category;
+  }
 }
 
 export default Category;

@@ -1,4 +1,4 @@
-const MENUS = {
+export const MENUS = {
   일식: [
     '규동',
     '우동',
@@ -56,4 +56,4 @@ const MENUS = {
   ],
 };
 
-const CATEGORIES = Object.keys(SAMPLE);
+export const CATEGORIES = Object.keys(MENUS);

@@ -18,6 +18,12 @@ class RecommendController {
   async run() {
     await handleException(() => this.#initiateCoaches());
     await handleException(() => this.#initiateHateMenus());
+
+    this.#recommend();
+  }
+
+  #recommend() {
+    this.#recommendService.pickCategories();
   }
 
   async #initiateCoaches() {
