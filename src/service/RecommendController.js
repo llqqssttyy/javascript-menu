@@ -16,25 +16,20 @@ class RecommendController {
   }
 
   async run() {
-    await handleException(() => this.#initiateCoaches());
-    await handleException(() => this.#initiateHateMenus());
+    await handleException(() => this.#setCoaches());
+    await handleException(() => this.#setHateMenus());
 
     this.#recommend();
 
     this.#printRecommendResult();
   }
 
-  #recommend() {
-    this.#recommendService.pickCategories();
-    this.#recommendService.pickRecommendMenus();
-  }
-
-  async #initiateCoaches() {
+  async #setCoaches() {
     const input = await this.#inputView.getNames();
     this.#recommendService.generateCoaches(input);
   }
 
-  async #initiateHateMenus() {
+  async #setHateMenus() {
     const { coaches } = this.#recommendService;
 
     const hateMenus = [];
@@ -43,7 +38,12 @@ class RecommendController {
       hateMenus.push(input);
     }
 
-    this.#recommendService.initiateHateMenus(hateMenus);
+    this.#recommendService.setHateMenus(hateMenus);
+  }
+
+  #recommend() {
+    this.#recommendService.pickCategories();
+    this.#recommendService.pickRecommendMenus();
   }
 
   #printRecommendResult() {

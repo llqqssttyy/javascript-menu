@@ -1,4 +1,3 @@
-import Validate from '../domain/validators/Validate.js';
 import {
   MAX_CATEGORY_CNTS,
   MAX_CATEGORY_ID,
@@ -6,12 +5,15 @@ import {
   SEPERATOR,
   WEEK,
 } from '../statics/constants.js';
-import Coach from '../domain/models/Coach.js';
 import { CATEGORIES } from '../statics/menus.js';
+
 import { Random } from '@woowacourse/mission-utils';
 import checkEleCntsInArr from '../utils/checkEleCntsInArr.js';
+
+import Coach from '../domain/models/Coach.js';
 import Category from '../domain/models/Category.js';
 
+import Validate from '../domain/validators/Validate.js';
 class RecommendService {
   #coaches = [];
 
@@ -26,7 +28,7 @@ class RecommendService {
   /**
    * @param {string[]} hateMenus
    */
-  initiateHateMenus(hateMenus) {
+  setHateMenus(hateMenus) {
     this.#coaches.forEach((coach, idx) => {
       coach.hateMenus = hateMenus[idx];
     });
