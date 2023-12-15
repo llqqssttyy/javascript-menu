@@ -1,10 +1,13 @@
 import {
+  MAX_MENUS_CNTS,
   MAX_NAME_CNT,
   MAX_NAME_LENGTH,
+  MIN_MENUS_CNTS,
   MIN_NAME_CNT,
   MIN_NAME_LENGTH,
   SEPERATOR,
 } from '../../statics/constants.js';
+import { MENUS } from '../../statics/menus.js';
 
 // Common
 export const isEmptyString = (input) => {
@@ -18,11 +21,11 @@ export const hasDuplicatedElement = (input) => {
 };
 
 // 코치 이름 유효성 검사
-export const isValidNameForm = (input) => {
-  const nameRegex = new RegExp(
+export const isValidForm = (input) => {
+  const formRegex = new RegExp(
     /^([ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z]+,)*([ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z]+,?)$/
   );
-  return nameRegex.test(input);
+  return formRegex.test(input);
 };
 
 export const isValidNameCount = (input) => {
@@ -35,4 +38,14 @@ export const isValidNameLength = (input) => {
   return nameLength >= MIN_NAME_LENGTH, nameLength <= MAX_NAME_LENGTH;
 };
 
-export const isValidMenusForm = (input) => {};
+export const isExistMenus = (input) => {
+  const menus = input.split(SEPERATOR);
+  return menus.every((menu) =>
+    Object.values(MENUS).some((menus) => menus.includes(menu))
+  );
+};
+
+export const isValidMenusCount = (input) => {
+  const menusCnt = input.split(SEPERATOR).length;
+  return menusCnt >= MIN_MENUS_CNTS && menusCnt <= MAX_MENUS_CNTS;
+};

@@ -3,16 +3,17 @@ import throwError from '../../utils/throwError.js';
 import {
   hasDuplicatedElement,
   isEmptyString,
+  isValidForm,
   isValidNameCount,
-  isValidNameForm,
   isValidNameLength,
+  isExistMenus,
 } from './validators.js';
 
 const Validate = {
   namesForm(input) {
     if (isEmptyString(input)) throwError(ERRORS.whitespace);
 
-    if (!isValidNameForm(input)) throwError(ERRORS.invalidNamesForm);
+    if (!isValidForm(input)) throwError(ERRORS.invalidNamesForm);
 
     if (!isValidNameCount(input)) throwError(ERRORS.invalidNameCount);
 
@@ -23,11 +24,13 @@ const Validate = {
     if (!isValidNameLength(input)) throwError(ERRORS.invalidNameLength);
   },
 
-  hateMenusForm(input) {
-    if (!isValidMenusForm(input)) throwError(ERRORS.invalidMenusForm);
-  },
+  hateMenus(input) {
+    if (isEmptyString(input)) return;
 
-  hateMenus() {},
+    if (!isValidForm(input)) throwError(ERRORS.invalidMenusForm);
+
+    if (!isExistMenus(input)) throwError(ERRORS.invalidMenus);
+  },
 };
 
 export default Validate;

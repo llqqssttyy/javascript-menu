@@ -27,8 +27,6 @@ class RecommendService {
    * @param {string[]} hateMenus
    */
   initiateHateMenus(hateMenus) {
-    Validate.hateMenusForm(hateMenus);
-
     this.#coaches.forEach((coach, idx) => {
       coach.hateMenus = hateMenus[idx];
     });
