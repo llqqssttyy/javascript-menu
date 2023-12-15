@@ -20,6 +20,8 @@ class RecommendController {
     await handleException(() => this.#initiateHateMenus());
 
     this.#recommend();
+
+    this.#printRecommendResult();
   }
 
   #recommend() {
@@ -42,6 +44,11 @@ class RecommendController {
     }
 
     this.#recommendService.initiateHateMenus(hateMenus);
+  }
+
+  #printRecommendResult() {
+    const { categories, recommendResults } = this.#recommendService;
+    this.#outputView.printRecommendResult(categories, recommendResults);
   }
 }
 

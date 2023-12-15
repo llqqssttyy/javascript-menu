@@ -1,3 +1,5 @@
+import { WEEK } from './constants';
+
 const ERRORS = Object.freeze({
   prefix: '[ERROR]',
   whitespace: '공백은 입력할 수 없습니다.\n',
@@ -15,10 +17,16 @@ const INPUTS = Object.freeze({
 
 const OUTPUTS = Object.freeze({
   start: '점심 메뉴 추천을 시작합니다.\n',
-  result: '메뉴 추천 결과입니다.',
-  week: '[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]',
-  printCategories() {},
-  printMenus() {},
+  result: '\n메뉴 추천 결과입니다.',
+  printWeek() {
+    return `[ 구분 | ${WEEK.join(' | ')} ]`;
+  },
+  printCategories(categories) {
+    return `[ 카테고리 | ${categories.join(' | ')} ]`;
+  },
+  printResult({ name, recommendMenus }) {
+    return `[ ${name} | ${recommendMenus.join(' | ')} ]`;
+  },
   end: '\n추천을 완료했습니다.',
 });
 

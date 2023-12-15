@@ -64,6 +64,15 @@ class RecommendService {
   get categories() {
     return this.#categories.map((category) => category.category);
   }
+
+  get recommendResults() {
+    return this.#coaches.map((coach) => {
+      return {
+        name: coach.name,
+        recommendMenus: coach.recommendMenus,
+      };
+    });
+  }
 }
 
 export default RecommendService;
