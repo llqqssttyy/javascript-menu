@@ -1,3 +1,4 @@
+import { Random } from '@woowacourse/mission-utils';
 import { MENUS } from '../../statics/menus.js';
 
 class Category {
@@ -10,7 +11,12 @@ class Category {
     this.#menus = MENUS[category];
   }
 
-  pickMenu() {}
+  getRecommend() {
+    const menuId = Random.shuffle(
+      Array.from({ length: this.#menus.length }, (_, idx) => idx + 1)
+    )[0];
+    return this.#menus[menuId - 1];
+  }
 
   get category() {
     return this.#category;

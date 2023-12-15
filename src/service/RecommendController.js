@@ -24,6 +24,7 @@ class RecommendController {
 
   #recommend() {
     this.#recommendService.pickCategories();
+    this.#recommendService.pickRecommendMenus();
   }
 
   async #initiateCoaches() {

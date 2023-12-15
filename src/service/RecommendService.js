@@ -47,8 +47,15 @@ class RecommendService {
     }
   }
 
-  // 카테고리 객체에게 메뉴 추천
-  // 각 코치의 recommendMenus의 길이가 5가 될 때 까지 반복
+  pickRecommendMenus() {
+    this.#coaches.forEach((coach) => {
+      while (coach.recommendMenus.length < WEEK.length) {
+        const weekOfDay = coach.recommendMenus.length;
+        const category = this.#categories[weekOfDay];
+        coach.recommendMenus = category.getRecommend();
+      }
+    });
+  }
 
   get coaches() {
     return this.#coaches.map((coach) => coach.name);
